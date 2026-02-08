@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Fulfillment Process Flow - Dvik Jewels</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .process-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            position: relative;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            animation: slideIn 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .step:nth-child(1) { animation-delay: 0.1s; transform: translateX(-30px); }
+        .step:nth-child(2) { animation-delay: 0.2s; transform: translateX(-30px); }
+        .step:nth-child(3) { animation-delay: 0.3s; transform: translateX(-30px); }
+        .step:nth-child(4) { animation-delay: 0.4s; transform: translateX(-30px); }
+        .step:nth-child(5) { animation-delay: 0.5s; transform: translateX(-30px); }
+        .step:nth-child(6) { animation-delay: 0.6s; transform: translateX(-30px); }
+        .step:nth-child(7) { animation-delay: 0.7s; transform: translateX(-30px); }
+        .step:nth-child(8) { animation-delay: 0.8s; transform: translateX(-30px); }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .step-content {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .step-content:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-left-color: #764ba2;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-description {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+
+        .step-actor {
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 0.3rem 0.8rem;
+            background: #667eea;
+            color: white;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .connector {
+            margin-left: 30px;
+            width: 2px;
+            height: 30px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            position: relative;
+        }
+
+        .connector::after {
+            content: '▼';
+            position: absolute;
+            bottom: -8px;
+            left: -6px;
+            color: #764ba2;
+            font-size: 12px;
+        }
+
+        .metrics {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            color: white;
+        }
+
+        .metrics h2 {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .step {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .connector {
+                margin-left: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📦 Order Fulfillment Process Flow</h1>
+        <p class="subtitle">Dvik Jewels - Etsy Store Operations</p>
+
+        <div class="process-flow">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">Order Received</div>
+                    <div class="step-description">
+                        Customer places order on Etsy platform. Order notification received via email with complete order details including product, quantity, shipping address, and payment confirmation.
+                    </div>
+                    <span class="step-actor">System / Customer</span>
+                </div>
+            </div>
+
+            <div class="connector"></div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-title">Order Validation</div>
+                    <div class="step-description">
+                        Review order details for accuracy, verify payment status, and check for any special customer requests or customization requirements.
+                    </div>
+                    <span class="step-actor">Store Manager</span>
+                </div>
+            </div>
+
+            <div class="connector"></div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-title">Inventory Check & Supplier Coordination</div>
+                    <div class="step-description">
+                        Verify product availability with supplier. If in stock, reserve item for order. If out of stock, coordinate with supplier for restocking timeline and communicate expected delivery date to customer.
+                    </div>
+                    <span class="step-actor">Store Manager / Supplier</span>
+                </div>
+            </div>
+
+            <div class="connector"></div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <div class="step-title">Product Procurement</div>
+                    <div class="step-description">
+                        Receive product from supplier. Conduct quality inspection to ensure item meets standards. Check for defects, verify specifications match order requirements.
+                    </div>
+                    <span class="step-actor">Store Manager</span>
+                </div>
+            </div>
+
+            <div class="connector"></div>
+
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <div class="step-title">Packaging & Labeling</div>
+                    <div class="step-description">
+                        Carefully package item with protective materials. Create professional packaging with branded materials. Print and attach shipping label with accurate address information.
+                    </div>
+                    <span class="step-actor">Store Manager</span>
+                </div>
+            </div>
+
+            <div class="connector"></div>
+
+            <div class="step">
+                <div class="step-number">6</div>
+                <div class="step-content">
+                    <div class="step-title">Shipping Handoff</div>
+                    <div class="step-description">
+                        Coordinate with logistics partner (USPS, UPS, FedEx) for package pickup or drop-off. Obtain tracking number and update order status in Etsy system.
+                    </div>
+                    <span class="step-actor">Store Manager / Logistics Partner</span>
+                </div>
+            </div>
+
+            <div class="connector"></div>
+
+            <div class="step">
+                <div class="step-number">7</div>
+                <div class="step-content">
+                    <div class="step-title">Customer Communication</div>
+                    <div class="step-description">
+                        Send shipping confirmation email to customer with tracking information. Provide estimated delivery date and respond to any customer inquiries throughout shipping process.
+                    </div>
+                    <span class="step-actor">Store Manager</span>
+                </div>
+            </div>
+
+            <div class="connector"></div>
+
+            <div class="step">
+                <div class="step-number">8</div>
+                <div class="step-content">
+                    <div class="step-title">Delivery & Follow-up</div>
+                    <div class="step-description">
+                        Monitor tracking for successful delivery. Send post-delivery follow-up email requesting feedback and review. Address any customer concerns or issues promptly.
+                    </div>
+                    <span class="step-actor">Store Manager / Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="metrics">
+            <h2>Process Performance Metrics</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">18h</div>
+                    <div class="metric-label">Avg Processing Time</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">98%</div>
+                    <div class="metric-label">On-Time Delivery</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">4.7/5</div>
+                    <div class="metric-label">Customer Satisfaction</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">142</div>
+                    <div class="metric-label">Orders/Month</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
